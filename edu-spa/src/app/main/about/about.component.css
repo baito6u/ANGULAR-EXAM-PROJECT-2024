@@ -1,0 +1,44 @@
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+article {
+    display: flex;
+    gap: 2em;
+    max-width: auto;
+    margin: 0 auto;
+    
+    padding: 26px;
+    background-color: #1881B6;
+    align-items: center;
+}
+
+article .wrapper {
+    flex: 1 1 auto;
+}
+
+
+article .media {
+    flex: 0 0 500px;
+}
+
+h3 {
+    color: white;
+    line-height: 1;
+    font-size: 30px;
+    font-weight: normal;
+    padding-bottom: 1em;
+}
+
+h4 {
+    margin: 1em;
+}
+
+
+p {
+    line-height: 2;
+    padding: 0 1em;
+    text-indent: 4em;
+}

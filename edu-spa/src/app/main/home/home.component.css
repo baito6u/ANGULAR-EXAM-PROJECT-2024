@@ -1,0 +1,26 @@
+.video-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .video {
+    width: 100%;
+  }
+  .blurred-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    backdrop-filter: blur(0.5px); /* Apply a blur filter */
+  }
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2em;
+    text-align: center;
+  }
