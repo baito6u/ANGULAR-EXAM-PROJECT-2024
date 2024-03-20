@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,7 @@ import { RouterModule } from '@angular/router';
     ProfileComponent
   ],
   imports: [
-    CommonModule, RouterModule
+    CommonModule, RouterModule,SharedModule
   ],
   exports: [LoginComponent, RegisterComponent, ProfileComponent],
 })
