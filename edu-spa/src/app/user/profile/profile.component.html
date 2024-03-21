@@ -1,1 +1,64 @@
-<p>profile works!</p>
+<div class="separator">
+    <h4>My Dashboard</h4>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <div class="form-floating mb-3 text-center">
+                <h5 class="text-center text-primary">Add Course</h5>
+            </div>
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="courseName" name="courseName"
+                        [(ngModel)]="course_name" />
+                    <label for="courseName">Course name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="description" />
+                    <label for="description">Description</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="date" name="date" [(ngModel)]="date" />
+                    <label for="description">Date</label>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="addCourse()">
+                    Add Course
+                </button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-5">
+            <div class="form-floating mb-3 text-center">
+                <h5 class="text-center text-primary">My Courses</h5>
+            </div>
+            <h5 class="text-primary"></h5>
+            <div class="card p-3">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Coure Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Action</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let course of coursesList">
+                            <td>{{course.course_name}}</td>
+                            <td>{{course.description}}</td>
+                            <td>{{course.date}}</td>
+                            <td>
+                                <div class="btn btn-outline-danger" (click)="deleteCourse(course)">Delete</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

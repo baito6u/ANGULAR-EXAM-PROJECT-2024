@@ -11,15 +11,15 @@
                             <p class="text-white-50 mb-5">Please enter your login email and password!</p>
 
                             <div class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                <label class="form-label" for="typeEmailX">Email</label>
+                                <input type="email" name="email" [(ngModel)]="email" class="form-control form-control-lg" />
+                                <label class="form-label" for="email">Email</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                <label class="form-label" for="typePasswordX">Password</label>
+                                <input type="password" name="password" [(ngModel)]="password" class="form-control form-control-lg" />
+                                <label class="form-label" for="password">Password</label>
                             </div>
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">LOGIN</button>
+                            <button class="btn btn-outline-light btn-lg px-5" type="button" (click)="login()">LOGIN</button>
                         </div>
                         <div>
                             <p class="mb-0">Don't have an account? <a routerLink="/register"
