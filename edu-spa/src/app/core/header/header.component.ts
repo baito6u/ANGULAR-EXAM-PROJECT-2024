@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { retry } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
@@ -8,18 +9,16 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class HeaderComponent {
   
-  constructor(private auth: AuthService) {}
+  constructor(private authService: AuthService) {}
   
-  get isLoggedIn(): boolean {
-    return this.auth.isLogged;
-  }
 
-  get userName(): string {
-    return this.auth.user?.name || '';
+  get isAuthenticated(): boolean {
+    return this.authService.isLoggedIn;
+    
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.SignOut();
   }
 
 }

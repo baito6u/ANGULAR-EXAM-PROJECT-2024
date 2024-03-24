@@ -22,17 +22,16 @@
       </ul>
     </div>
 
-    <ng-container *ngIf="isLoggedIn">
-        <div class="d-grid gap-5 d-md-block">
+    <ng-container >
+        <div class="d-grid gap-5 d-md-block" *ngIf="!isAuthenticated">
           <a class="btn m-2 btn-primary" routerLink="/login" type="button">Login</a>
           <a class="btn btn-primary" routerLink="/register" type="button">Register</a>
       </div>
-    </ng-container>
-    <ng-container *ngIf="!isLoggedIn">
-      <div class="d-grid gap-5 d-md-block">
-        <a class="btn m-2 btn-primary" routerLink="/prifile" type="button">{{userName}} Profile</a>
+    
+      <div class="d-grid gap-5 d-md-block" *ngIf="isAuthenticated">
+        <a class="btn m-2 btn-primary" routerLink="/profile" type="button">Profile</a>
         <a class="btn btn-primary" routerLink="/home" type="button" (click)="logout()">Logout</a>
       </div>
-  </ng-container>
+    </ng-container>
   </div>
 </nav>

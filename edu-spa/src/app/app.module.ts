@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     UserModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

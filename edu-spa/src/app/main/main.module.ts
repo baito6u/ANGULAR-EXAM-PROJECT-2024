@@ -5,6 +5,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { AboutComponent } from './about/about.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -16,7 +17,7 @@ import { RouterModule } from '@angular/router';
     AboutComponent
   ],
   imports: [
-    CommonModule, RouterModule
+    CommonModule, RouterModule, SharedModule
   ],
   exports: [HomeComponent,CoursesComponent, ProgramsComponent, AboutComponent]
 })

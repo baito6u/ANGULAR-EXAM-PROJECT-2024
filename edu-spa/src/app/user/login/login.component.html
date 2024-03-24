@@ -19,7 +19,7 @@
                                 <input type="password" name="password" [(ngModel)]="password" class="form-control form-control-lg" />
                                 <label class="form-label" for="password">Password</label>
                             </div>
-                            <button class="btn btn-outline-light btn-lg px-5" type="button" (click)="login()">LOGIN</button>
+                            <button class="btn btn-outline-light btn-lg px-5" type="button" routerLink="/home" (click)="login(email,password)">LOGIN</button>
                         </div>
                         <div>
                             <p class="mb-0">Don't have an account? <a routerLink="/register"
@@ -33,3 +33,54 @@
         </div>
     </div>
 </section>
+
+<!-- <div class="displayTable">
+    <div class="displayTableCell">
+      <div class="authBlock">
+        <h3>Sign In</h3>
+        <div class="formGroup">
+          <input
+            type="text"
+            class="formControl"
+            placeholder="Username"
+            #userName
+            required
+          />
+        </div>
+        <div class="formGroup">
+          <input
+            type="password"
+            class="formControl"
+            placeholder="Password"
+            #userPassword
+            required
+          />
+        </div>
+        <!-- Calling SignIn Api from AuthService -->
+        <!-- <div class="formGroup">
+          <input
+            type="button"
+            class="btn btnPrimary"
+            value="Log in"
+            (click)="authService.SignIn(userName.value, userPassword.value)"
+          />
+        </div>
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Or</span></span>
+        </div>
+        <div class="forgotPassword">
+          <span routerLink="/forgot-password">Forgot Password?</span>
+        </div>
+      </div>
+      <div class="redirectToLogin">
+        <span
+          >Don't have an account?<span
+            class="redirect"
+            routerLink="/register-user"
+          >
+            Sign Up</span
+          ></span
+        >
+      </div>
+    </div>
+  </div> -->

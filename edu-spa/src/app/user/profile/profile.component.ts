@@ -28,9 +28,9 @@ export class ProfileComponent implements OnInit {
     this.getAllCourses();
   }
 
-  // register() {
-  //   this.auth.logout();
-  // }
+  register() {
+    this.auth.SignOut();
+  }
 
   getAllCourses() {
     this.data.getAllCourses().subscribe(res => {
