@@ -12,12 +12,12 @@
     <p>The students have a choice between 4 professional areas, which are oriented in web development with the programming languages ​​C#, Java, JavaScript.</p>
 </div>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+    <div class="col" *ngFor="let program of programList">
       <div class="card h-100">
-        <img src="../../../assets/course-01.jpg" class="card-img-top" alt="...">
+        <img src="{{program.image}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <h5 class="card-title">{{program.title}}</h5>
+          <p class="card-text">{{program.description}}</p>
         </div>
         <button type="button" class="btn btn-primary">LEARN MORE</button>
         <div class="card-footer">
@@ -25,31 +25,6 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="../../../assets/course-02.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <button type="button" class="btn btn-primary">LEARN MORE</button>
-        <div class="card-footer">
-          <small class="text-body-secondary">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="../../../assets/course-03.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <button type="button" class="btn btn-primary">LEARN MORE</button>
-        <div class="card-footer">
-          <small class="text-body-secondary">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+    
   </div>
   

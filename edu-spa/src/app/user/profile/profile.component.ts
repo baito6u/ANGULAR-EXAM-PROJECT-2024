@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
     description: '',
     date: ''
   };
+  
   id: string = '';
   course_name: string = '';
   description: string = '';

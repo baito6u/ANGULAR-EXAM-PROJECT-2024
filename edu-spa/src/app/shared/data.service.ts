@@ -20,6 +20,9 @@ export class DataService {
     return this.afs.collection('/Courses').snapshotChanges()
   }
 
+  getAllPrograms() {
+    return this.afs.collection('/Programs').snapshotChanges()
+  }
   // delete Course
   deleteCourse(course: Course) {
     return this.afs.doc('/Courses/'+course.id).delete();
