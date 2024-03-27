@@ -21,6 +21,6 @@ import { DetailsComponent } from './details/details.component';
   imports: [
     CommonModule, RouterModule, SharedModule
   ],
-  exports: [HomeComponent,CoursesComponent, ProgramsComponent, AboutComponent]
+  exports: [HomeComponent,CoursesComponent, ProgramsComponent, AboutComponent, DetailsComponent]
 })
 export class MainModule { }

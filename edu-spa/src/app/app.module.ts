@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from 'src/environments/environment.development';
 import { FormsModule } from '@angular/forms';
+import { DataService } from './shared/data.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
