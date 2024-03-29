@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 import { Course } from './types/course-type';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  //  program = {} as Program;
 
   constructor(private afs: AngularFirestore) { }
 
@@ -42,8 +45,16 @@ export class DataService {
   }
 
   getProgramById(programId: string): Observable<any> {
-    return this.afs.doc<any>(`/Programs/${programId}`).snapshotChanges();
-    debugger
+    return this.afs.doc(`/Programs/${programId}`).snapshotChanges().pipe(
+      map(action => {
+        const data = action.payload.data();
+        const id = action.payload.id;
+        return {id, ...data as object};
+      })
+    )
+    
   }
+
+  
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DataService } from 'src/app/shared/data.service';
+import { Program } from 'src/app/shared/types/program-type';
 
 @Component({
   selector: 'app-details',
@@ -8,17 +10,21 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit{
-  program: any;
+  //program = {} as Program;
+  program$!: Observable<any>;
 
-  constructor(private dataServise: DataService, private route: ActivatedRoute) { }
-
+  constructor(private route: ActivatedRoute, private dataService: DataService) { }
+  
   ngOnInit(): void {
-    const programId = this.route.snapshot.paramMap.get('id');
-    this.dataServise.getProgramById(programId as string).subscribe(program => {
-      this.program = program;
-      
-    });
+    this.getProgramsDetails();
     
+  }
+
+  getProgramsDetails() {
+    const programId = this.route.snapshot.paramMap.get('id');
+    if(programId) {
+      this.program$ = this.dataService.getProgramById(programId);
+    }
   }
 
 }
