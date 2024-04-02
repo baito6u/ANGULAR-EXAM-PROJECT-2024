@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  //  program = {} as Program;
+  private selectedProgram: any;
 
   constructor(private afs: AngularFirestore) { }
 
@@ -30,16 +30,13 @@ export class DataService {
     return this.afs.doc('/Courses/'+course.id).delete();
   }
 
-  //edit Coures
-  
-
   //update Course
   updateCourse(course: Course) {
     this.deleteCourse(course);
     this.addCourse(course);
   }
 
-  // Prograns page functions
+  // Programs page functions
   getAllPrograms() {
     return this.afs.collection('/Programs').snapshotChanges()
   }
@@ -55,6 +52,13 @@ export class DataService {
     
   }
 
-  
+  setSelectedProgram(program: any) {
+    this.selectedProgram = program;
+  }
+
+  getSelectedProgram() {
+    return this.selectedProgram;
+  }
+
 
 }

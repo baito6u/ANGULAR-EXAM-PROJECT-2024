@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService } from 'src/app/shared/data.service';
-import { Program } from 'src/app/shared/types/program-type';
 
 @Component({
   selector: 'app-details',
@@ -10,10 +9,9 @@ import { Program } from 'src/app/shared/types/program-type';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit{
-  //program = {} as Program;
   program$!: Observable<any>;
 
-  constructor(private route: ActivatedRoute, private dataService: DataService) { }
+  constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router) { }
   
   ngOnInit(): void {
     this.getProgramsDetails();
@@ -26,5 +24,11 @@ export class DetailsComponent implements OnInit{
       this.program$ = this.dataService.getProgramById(programId);
     }
   }
+
+  navigateToProfile(program: any) {
+    this.dataService.setSelectedProgram(program);
+    this.router.navigate(['/profile']);
+  }
+
 
 }

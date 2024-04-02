@@ -8,13 +8,14 @@ import { CoursesComponent } from './main/courses/courses.component';
 import { ProgramsComponent } from './main/programs/programs.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { DetailsComponent } from './main/details/details.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'courses', component: CoursesComponent},
   {path: 'programs', component: ProgramsComponent},
