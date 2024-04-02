@@ -23,7 +23,12 @@
   <div class="row">
     <div class="col-md-4 mt-5">
       <div class="form-floating mb-3 text-center">
-        <h5 class="text-center text-primary">Add Note</h5>
+
+        <ng-container >
+          <h5 *ngIf="!editedNote" class="text-center text-primary">Add Note</h5>
+          <h5 *ngIf="editedNote" class="text-center text-primary">Edit Note</h5>
+        </ng-container>
+
       </div>
       <div class="card border-0 shadow p-3">
         <div class="form-floating mb-3">
@@ -32,7 +37,7 @@
             class="form-control"
             id="courseName"
             name="courseName"
-            [(ngModel)]="course_name"
+            [(ngModel)]="note_name"
           />
           <label for="courseName">Note name</label>
         </div>
@@ -56,9 +61,10 @@
           />
           <label for="description">Date</label>
         </div>
-        <button type="button" class="btn btn-primary" (click)="addCourse()">
-          Add Note
-        </button>
+        <ng-container > 
+          <button *ngIf="!editedNote" type="button" class="btn btn-primary" (click)="addNote()">Add Note</button>
+          <button *ngIf="editedNote" type="button" class="btn btn-primary" (click)="addNote()">Edit Note</button>
+        </ng-container>
       </div>
     </div>
     <!-- my notes -->
@@ -79,11 +85,11 @@
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let course of coursesList">
+              <ng-container *ngFor="let note of notesList">
                 <tr>
-                  <td>{{ course.course_name }}</td>
-                  <td>{{ course.description }}</td>
-                  <td>{{ course.date }}</td>
+                  <td>{{ note.note_name }}</td>
+                  <td>{{ note.description }}</td>
+                  <td>{{ note.date }}</td>
                   <td>
                     <div
                       class="btn-group"
@@ -92,13 +98,13 @@
                     >
                       <div
                         class="btn btn-outline-primary me-2"
-                        (click)="editCourse(course)"
+                        (click)="editNote(note)"
                       >
                         Edit
                       </div>
                       <div
                         class="btn btn-outline-danger"
-                        (click)="deleteCourse(course)"
+                        (click)="deleteNote(note)"
                       >
                         Delete
                       </div>

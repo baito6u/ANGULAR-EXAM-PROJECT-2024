@@ -1,6 +1,6 @@
-export interface Course {
+export interface Note {
     id: string;
-    course_name: string;
+    note_name: string;
     description: string;
     date: string;
 }

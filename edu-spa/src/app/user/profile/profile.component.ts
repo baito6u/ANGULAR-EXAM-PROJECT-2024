@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
-import { Course } from 'src/app/shared/types/course-type';
+import { Note } from 'src/app/shared/types/note-type';
 
 @Component({
   selector: 'app-profile',
@@ -10,29 +10,27 @@ import { Course } from 'src/app/shared/types/course-type';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  currentUser: any;
   program: any;
-
-  coursesList: Course[] = [];
-  courseObj: Course = {
+  editedNote: any = null;
+  notesList: Note[] = [];
+  noteObj: Note = {
     id: '',
-    course_name: '',
+    note_name: '',
     description: '',
     date: '',
   };
 
   id: string = '';
-  course_name: string = '';
+  note_name: string = '';
   description: string = '';
   date: string = '';
-  course: any;
-
-  editedCourse: any = null;
+  note: any;
 
   constructor(private auth: AuthService, private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.getAllCourses();
-
+    this.getAllNotes();
     this.program = this.dataService.getSelectedProgram();
   }
 
@@ -40,11 +38,12 @@ export class ProfileComponent implements OnInit {
     this.auth.SignOut();
   }
 
-  getAllCourses() {
-    this.dataService.getAllCourses()
+  getAllNotes() {
+    this.dataService
+      .getAllNotes()
       .pipe(
         tap((res: any[]) => {
-          this.coursesList = res.map((e: any) => {
+          this.notesList = res.map((e: any) => {
             const data = e.payload.doc.data();
             data.id = e.payload.doc.id;
             return data;
@@ -53,64 +52,62 @@ export class ProfileComponent implements OnInit {
       )
       .subscribe({
         error: (err) => {
-          alert('Error while fetching course data');
-        }
+          alert('Error while fetching note data');
+        },
       });
   }
 
   resetForm() {
     this.id = '';
-    this.course_name = '';
+    this.note_name = '';
     this.description = '';
     this.date = '';
   }
 
-  addCourse() {
-    if (this.course_name == '' || this.description == '' || this.date == '') {
+  addNote() {
+    if (this.note_name == '' || this.description == '' || this.date == '') {
       alert('Fill all imput fields');
       return;
     }
 
-    if (this.editedCourse) {
+    if (this.editedNote) {
       // Update the existing course
-      this.editedCourse.course_name = this.course_name;
-      this.editedCourse.description = this.description;
-      this.editedCourse.date = this.date;
-  
-      this.dataService.updateCourse(this.editedCourse);
+      this.editedNote.note_name = this.note_name;
+      this.editedNote.description = this.description;
+      this.editedNote.date = this.date;
+
+      this.dataService.updateNotes(this.editedNote);
       this.resetForm();
-      this.editedCourse = null; // Reset editedCourse after updating
+      this.editedNote = null; // Reset editedCourse after updating
     } else {
       // Add a new course
-      this.courseObj.id = '';
-      this.courseObj.course_name = this.course_name;
-      this.courseObj.description = this.description;
-      this.courseObj.date = this.date;
-  
-      this.dataService.addCourse(this.courseObj);
+      this.noteObj.id = '';
+      this.noteObj.note_name = this.note_name;
+      this.noteObj.description = this.description;
+      this.noteObj.date = this.date;
+
+      this.dataService.addNote(this.noteObj);
       this.resetForm();
     }
   }
 
-  editCourse(course: Course) {
-    this.editedCourse = { ...course };
-  
-  // Populate the form fields with the details of the selected course
-  this.id = this.editedCourse.id;
-  this.course_name = this.editedCourse.course_name;
-  this.description = this.editedCourse.description;
-  this.date = this.editedCourse.date;
+  editNote(course: Note) {
+    this.editedNote = { ...course };
+
+    // Populate the form fields with the details of the selected note
+    this.id = this.editedNote.id;
+    this.note_name = this.editedNote.note_name;
+    this.description = this.editedNote.description;
+    this.date = this.editedNote.date;
   }
 
-  
-
-  deleteCourse(course: Course) {
+  deleteNote(note: Note) {
     if (
       window.confirm(
-        'Are you shure you want to delete ' + course.course_name + '?'
+        'Are you shure you want to delete ' + note.note_name + '?'
       )
     ) {
-      this.dataService.deleteCourse(course);
+      this.dataService.deleteNote(note);
     }
   }
 }
