@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'courses', component: CoursesComponent},
   {path: 'programs', component: ProgramsComponent},
-  {path: 'details/:id', component: DetailsComponent},
+  {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuard] },
   {path: '**', component: HomeComponent},
 ];
 
