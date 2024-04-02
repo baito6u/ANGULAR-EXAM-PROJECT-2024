@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
+import { tap } from 'rxjs';
 import { DataService } from 'src/app/shared/data.service';
 import { Program } from 'src/app/shared/types/program-type';
 
@@ -24,21 +24,27 @@ export class ProgramsComponent implements OnInit{
   image: string = '';
 
 
-  constructor(private auth: AuthService, private data: DataService) {}
+  constructor(private data: DataService) {}
 
   ngOnInit(): void {
     this.getAllPrograms();
   }
 
   getAllPrograms() {
-    this.data.getAllPrograms().subscribe(res => {
-      this.programList = res.map((e: any) => {
-        const data = e.payload.doc.data();
-        data.id = e.payload.doc.id;
-          return data;
+    this.data.getAllPrograms()
+      .pipe(
+        tap((res: any[]) => {
+          this.programList = res.map((e: any) => {
+            const data = e.payload.doc.data();
+            data.id = e.payload.doc.id;
+            return data;
+          });
+        })
+      )
+      .subscribe({
+        error: (err) => {
+          alert('Error while fetching course data');
+        }
       });
-    }, (err) => {
-      alert('Error while fetching course data');
-    });
   }
 }

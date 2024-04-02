@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
 import { Course } from 'src/app/shared/types/course-type';
@@ -40,18 +41,21 @@ export class ProfileComponent implements OnInit {
   }
 
   getAllCourses() {
-    this.dataService.getAllCourses().subscribe(
-      (res) => {
-        this.coursesList = res.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        });
-      },
-      (err) => {
-        alert('Error while fetching course data');
-      }
-    );
+    this.dataService.getAllCourses()
+      .pipe(
+        tap((res: any[]) => {
+          this.coursesList = res.map((e: any) => {
+            const data = e.payload.doc.data();
+            data.id = e.payload.doc.id;
+            return data;
+          });
+        })
+      )
+      .subscribe({
+        error: (err) => {
+          alert('Error while fetching course data');
+        }
+      });
   }
 
   resetForm() {

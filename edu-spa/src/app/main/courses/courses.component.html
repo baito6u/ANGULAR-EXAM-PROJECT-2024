@@ -6,43 +6,15 @@
     </div>
 </div>
 <h2>UPCOMING COURSES</h2>
-<div class="card mb-3" style="max-width: 1440px;">
+<div *ngFor="let course of coursesList" class="card mb-3" style="max-width: 1440px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="../../../assets/course-01.jpg" class="img-fluid rounded-start" alt="...">
+        <img src="{{course.image}}" class="img-fluid rounded-start" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Deep Learning - December 2024</h5>
-          <p class="card-text">In this course, participants will learn the basics - theoretical and practical - of neural networks, what problems we encounter, how we solve them and how we ensure the correct operation of our models. ...</p>
-          <p class="card-text"><small class="text-body-secondary"> 11/09/2024  9 weeks</small></p>
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="card mb-3" style="max-width: 1440px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="../../../assets/course-02.jpg" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Compromising Platforms - September 2024</h5>
-          <p class="card-text">During the "Compromising Platforms" course, techniques and approaches will be presented to enumerate and exploit web platforms (applications), which are the most common type of "engagement" in profession...</p>
-          <p class="card-text"><small class="text-body-secondary"> 10/12/2024  10 weeks</small></p>
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="card mb-3" style="max-width: 1440px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="../../../assets/course-03.jpg" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">IT Business Analysis Advanced - September 2024</h5>
-          <p class="card-text">This course is designed for business analytics professionals who wish to expand their skills and derive more value for their careers. The course will focus on developing...</p>
+          <h5 class="card-title">{{course.title}}</h5>
+          <p class="card-text">{{course.description}}</p>
           <p class="card-text"><small class="text-body-secondary"> 11/09/2024  9 weeks</small></p>
         </div>
       </div>

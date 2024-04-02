@@ -36,6 +36,11 @@ export class DataService {
     this.addCourse(course);
   }
 
+  //Courses page
+  getAllCorsesPage() {
+    return this.afs.collection('/courses-list').snapshotChanges()
+  }
+
   // Programs page functions
   getAllPrograms() {
     return this.afs.collection('/Programs').snapshotChanges()
