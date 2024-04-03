@@ -103,9 +103,7 @@ export class ProfileComponent implements OnInit {
 
   deleteNote(note: Note) {
     if (
-      window.confirm(
-        'Are you shure you want to delete ' + note.note_name + '?'
-      )
+      window.confirm('Are you shure you want to delete ' + note.note_name + '?')
     ) {
       this.dataService.deleteNote(note);
     }

@@ -4,15 +4,16 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import { User } from 'firebase/auth';
+
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData: any;
+  
 
   constructor(
     public afs: AngularFirestore,
