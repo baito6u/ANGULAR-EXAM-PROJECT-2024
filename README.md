@@ -13,3 +13,8 @@ NODE.JS: 16.14.0 || ^18.10.0
 TYPESCRIPT: 5.1.3
 
 "firebase": 10.9.0 npm install firebase
+
+Home Page: when there is no user
+![alt text](image.png)
+Home Page: when user is logged in
+![alt text](image-1.png)

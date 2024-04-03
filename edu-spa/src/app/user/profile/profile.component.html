@@ -86,6 +86,8 @@
             </thead>
             <tbody>
               <ng-container *ngFor="let note of notesList">
+
+                 <!-- Only display notes owned by the current user -->
                 <tr>
                   <td>{{ note.note_name }}</td>
                   <td>{{ note.description }}</td>

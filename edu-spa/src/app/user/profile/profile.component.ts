@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     note_name: '',
     description: '',
     date: '',
+    userId: '',
   };
 
   id: string = '';
@@ -30,6 +31,7 @@ export class ProfileComponent implements OnInit {
   constructor(private auth: AuthService, private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.currentUser= this.auth.userData;
     this.getAllNotes();
     this.program = this.dataService.getSelectedProgram();
   }
@@ -39,22 +41,28 @@ export class ProfileComponent implements OnInit {
   }
 
   getAllNotes() {
-    this.dataService
-      .getAllNotes()
-      .pipe(
-        tap((res: any[]) => {
-          this.notesList = res.map((e: any) => {
-            const data = e.payload.doc.data();
-            data.id = e.payload.doc.id;
-            return data;
-          });
-        })
-      )
-      .subscribe({
-        error: (err) => {
-          alert('Error while fetching note data');
-        },
-      });
+    const userId = this.auth.getCurrentUserUID();
+    if(userId) {
+
+      this.dataService
+        .getAllNotes()
+        .pipe(
+          tap((res: any[]) => {
+            this.notesList = res.map((e: any) => {
+              const data = e.payload.doc.data();
+              data.id = e.payload.doc.id;
+              return data;
+            });
+          })
+        )
+        .subscribe({
+          error: (err) => {
+            alert('Error while fetching note data');
+          },
+        });
+    } else {
+      alert('User not logged in');
+    }
   }
 
   resetForm() {
@@ -70,24 +78,30 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    if (this.editedNote) {
-      // Update the existing course
-      this.editedNote.note_name = this.note_name;
-      this.editedNote.description = this.description;
-      this.editedNote.date = this.date;
+    const userID = this.auth.getCurrentUserUID();
+    if (userID) {
+      if (this.editedNote) {
+        // Update the existing course
+        this.editedNote.note_name = this.note_name;
+        this.editedNote.description = this.description;
+        this.editedNote.date = this.date;
 
-      this.dataService.updateNotes(this.editedNote);
-      this.resetForm();
-      this.editedNote = null; // Reset editedCourse after updating
+        this.dataService.updateNotes(this.editedNote);
+        this.resetForm();
+        this.editedNote = null; // Reset editedCourse after updating
+      } else {
+        // Add a new course
+        this.noteObj.id = '';
+        this.noteObj.note_name = this.note_name;
+        this.noteObj.description = this.description;
+        this.noteObj.date = this.date;
+        this.noteObj.userId = userID;
+
+        this.dataService.addNote(this.noteObj);
+        this.resetForm();
+      }
     } else {
-      // Add a new course
-      this.noteObj.id = '';
-      this.noteObj.note_name = this.note_name;
-      this.noteObj.description = this.description;
-      this.noteObj.date = this.date;
-
-      this.dataService.addNote(this.noteObj);
-      this.resetForm();
+      alert('User not logged in');
     }
   }
 

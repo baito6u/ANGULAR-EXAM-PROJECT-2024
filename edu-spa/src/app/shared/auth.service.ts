@@ -7,13 +7,11 @@ import {
 
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData: any;
-  
 
   constructor(
     public afs: AngularFirestore,
@@ -57,20 +55,25 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
-        
+
         this.SetUserData(result.user);
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
-  
+
   // Returns true when user is looged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null ? true : false;
   }
- 
+
+  getCurrentUserUID(): string | null {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user ? user.uid : null;
+  }
+
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`

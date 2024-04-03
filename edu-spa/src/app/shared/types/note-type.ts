@@ -3,5 +3,6 @@ export interface Note {
     note_name: string;
     description: string;
     date: string;
+    userId: string;
 }
 
