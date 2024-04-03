@@ -2,7 +2,7 @@
 
 Edu-Api
 Edu-Api is an education project built with Angular 16 using HTML, CSS, BOOTSTRAP 5, and uses Firebase as a databasse and authentication. 
-This is for university or school or any educational institute. It consists of 5 pages: Home, About, Courses, Programs, Profile.
+This is for university or school or any educational institute. It consists of 6 pages: Home, About, Courses, Programs, Details, Profile.
 
 You will need installed:
 
